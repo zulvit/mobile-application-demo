@@ -1,4 +1,4 @@
-package ru.zulvit.models;
+package ru.zulvit.data.models;
 
 import java.io.Serializable;
 

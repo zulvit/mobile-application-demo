@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/onboardFragment">
 
+    <!-- OnBoardFragment -->
     <fragment
         android:id="@+id/onboardFragment"
-        android:name="ru.zulvit.OnboardFragment"
+        android:name="ru.zulvit.ui.onBoard.OnboardFragment"
         tools:layout="@layout/fragment_onboard">
         <action
             android:id="@+id/action_onboardFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
 
+    <!-- SignInFragment -->
     <fragment
         android:id="@+id/signInFragment"
-        android:name="ru.zulvit.SignInFragment"
+        android:name="ru.zulvit.ui.signIn.SignInFragment"
         tools:layout="@layout/fragment_sign_in">
         <argument
             android:name="user"
-            app:argType="ru.zulvit.models.User"
-            app:nullable="true" /> <!-- Сделано nullable -->
+            app:argType="ru.zulvit.data.models.User"
+            app:nullable="true" />
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -29,17 +31,24 @@
             app:destination="@id/signUpFragment" />
     </fragment>
 
+    <!-- SignUpFragment -->
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="ru.zulvit.SignUpFragment"
+        android:name="ru.zulvit.ui.signUp.SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment">
+            <argument
+                android:name="user"
+                app:argType="ru.zulvit.data.models.User"
+                app:nullable="true"/>
+        </action>
     </fragment>
 
+    <!-- HomeFragment -->
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ru.zulvit.HomeFragment"
+        android:name="ru.zulvit.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
 </navigation>
