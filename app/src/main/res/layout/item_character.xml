@@ -1,4 +1,3 @@
-<!-- res/layout/item_character.xml -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
@@ -19,6 +18,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{character.name}" />
+
+        <TextView
+            android:id="@+id/characterCulture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{character.culture != null ? "Culture: " + character.culture : "Culture: Unknown"}' />
+
+        <TextView
+            android:id="@+id/characterBorn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{character.born != null ? "Born: " + character.born : "Born: Unknown"}' />
+
+        <TextView
+            android:id="@+id/characterTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"Titles: " + android.text.TextUtils.join(", ", character.titles)}' />
+
+        <TextView
+            android:id="@+id/characterAliases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"Aliases: " + android.text.TextUtils.join(", ", character.aliases)}' />
+
+        <TextView
+            android:id="@+id/characterPlayedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"Played By: " + android.text.TextUtils.join(", ", character.playedBy)}' />
 
     </LinearLayout>
 </layout>
