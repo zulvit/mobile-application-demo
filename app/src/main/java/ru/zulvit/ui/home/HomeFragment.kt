@@ -20,6 +20,8 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var characterAdapter: CharacterAdapter
 
+    private var currentPage = 1  // Текущая страница
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +35,6 @@ class HomeFragment : Fragment() {
 
         // Настроим RecyclerView
         characterAdapter = CharacterAdapter { character ->
-            // Действие при нажатии на персонажа
             Toast.makeText(requireContext(), "Selected: ${character.name}", Toast.LENGTH_SHORT)
                 .show()
         }
@@ -43,10 +44,7 @@ class HomeFragment : Fragment() {
         // Наблюдаем за изменениями в данных
         homeViewModel.characters.observe(viewLifecycleOwner, { resource ->
             when (resource) {
-                is Resource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-
+                is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     resource.data?.let { characters ->
@@ -73,10 +71,30 @@ class HomeFragment : Fragment() {
             }
         })
 
-        // Загружаем персонажей
-        homeViewModel.getCharacters(page = 1)
+        // Установим слушатели на кнопки
+        binding.prevPageButton.setOnClickListener {
+            if (currentPage > 1) {
+                currentPage--
+                loadPage()
+            }
+        }
+
+        binding.nextPageButton.setOnClickListener {
+            currentPage++
+            loadPage()
+        }
+
+        // Загрузка первой страницы
+        loadPage()
 
         return binding.root
+    }
+
+    private fun loadPage() {
+        // Обновляем номер страницы
+        binding.pageNumber.text = "Page: $currentPage"
+        // Загружаем данные
+        homeViewModel.getCharacters(page = currentPage)
     }
 
     override fun onDestroyView() {
