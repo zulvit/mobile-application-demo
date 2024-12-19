@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.zulvit.R
 import ru.zulvit.data.repository.CharacterRepository
 import ru.zulvit.data.repository.Resource
 import ru.zulvit.databinding.FragmentHomeBinding
+import ru.zulvit.utils.exportCharactersToFile
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +30,11 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        // Кнопка перехода в настройки
+        binding.settingsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+        }
 
         // Инициализация ViewModel с фабрикой
         val characterRepository = CharacterRepository()  // Получаем репозиторий
@@ -50,6 +58,9 @@ class HomeFragment : Fragment() {
                     resource.data?.let { characters ->
                         if (characters.isNotEmpty()) {
                             characterAdapter.submitList(characters)
+                            // Экспортируем данные в файл
+                            val characterNames = characters.map { it.name ?: "Unknown" }
+                            exportCharactersToFile(requireContext(), characterNames, "characters_page_$currentPage")
                         } else {
                             Toast.makeText(
                                 requireContext(),

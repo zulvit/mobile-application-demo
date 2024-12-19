@@ -45,6 +45,7 @@ android {
 dependencies {
     implementation(libs.gson)
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation(libs.preference.ktx)
     runtimeOnly("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
     implementation(libs.navigation.fragment.ktx.v260)
     implementation(libs.navigation.ui.ktx.v260)

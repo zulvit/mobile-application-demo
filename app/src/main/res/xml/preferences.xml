@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:defaultValue="true"
+        android:key="notifications"
+        android:summary="Turn on/off notifications"
+        android:title="Enable Notifications" />
+
+    <Preference
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:key="theme"
+        android:summary="Choose app theme"
+        android:title="Theme" />
+
+    <Preference
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:key="language"
+        android:summary="Choose app language"
+        android:title="Language" />
+
+    <PreferenceCategory android:title="File Management">
+        <Preference
+            android:defaultValue="No file present"
+            android:enabled="false"
+            android:key="file_info"
+            android:summary="No file present"
+            android:title="File Info" />
+
+        <Preference
+            android:defaultValue="Delete file"
+            android:enabled="true"
+            android:key="delete_file"
+            android:summary="Delete the file from Documents"
+            android:title="Delete File" />
+    </PreferenceCategory>
+</PreferenceScreen>

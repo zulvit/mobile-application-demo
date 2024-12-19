@@ -42,7 +42,7 @@
             <argument
                 android:name="user"
                 app:argType="ru.zulvit.data.models.User"
-                app:nullable="true"/>
+                app:nullable="true" />
         </action>
     </fragment>
 
@@ -50,5 +50,16 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="ru.zulvit.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.zulvit.ui.home.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
